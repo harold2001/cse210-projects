@@ -5,23 +5,80 @@ class Journal
 {
     readonly List<Entry> _entries = new();
 
-    static void AddEntry()
+    public void AddEntry(Entry newEntry)
     {
-
+        _entries.Add(newEntry);
     }
 
-    static void DisplayAll()
+    public void DisplayAll()
     {
-
+        foreach (Entry item in _entries)
+        {
+            item.Display();
+            Console.WriteLine();
+        }
     }
 
-    static void SaveToFile()
+    public void SaveToFile(string filename)
     {
+        Console.WriteLine("Saving entries ...");
 
+        try
+        {
+            using StreamWriter sw = new(filename);
+            foreach (Entry entry in _entries)
+            {
+                sw.WriteLine($"{entry._promptText}\t{entry._entryText}");
+            }
+
+            Console.WriteLine($"Entries saved to {filename}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while saving entries: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine();
+        }
     }
 
-    static void LoadFromFile()
+    public void LoadFromFile(string filename)
     {
+        Console.WriteLine("Loading entries ...");
 
+        try
+        {
+            using StreamReader sr = new(filename);
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                string[] values = line.Split('\t');
+
+                if (values.Length == 2)
+                {
+                    string prompt = values[0];
+                    string answer = values[1];
+
+                    Entry loadedEntry = new(prompt, answer);
+                    AddEntry(loadedEntry);
+                }
+            }
+
+            Console.WriteLine($"Entries loaded from {filename}");
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"Error: File {filename} not found.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while loading entries: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine();
+        }
     }
 }
+
