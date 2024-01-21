@@ -1,3 +1,5 @@
+// I have written a function called DisplayMenu that helps me have cleaner code. Additionally, I implemented a function called GetUserChoice that helps me validate whether the input data is a number or not. Finally, I created the HandleEntry function that allows me to handle the logic of adding a new journal entry.
+
 using System;
 
 class Program
