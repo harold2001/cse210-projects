@@ -2,8 +2,8 @@ using System;
 
 class Scripture
 {
-    private Reference _reference;
-    private List<Word> _words;
+    private readonly Reference _reference;
+    private readonly List<Word> _words;
 
     public Scripture(Reference reference, string text)
     {
@@ -49,5 +49,19 @@ class Scripture
     {
         List<Word> wordsShown = _words.Where(word => word.IsHidden() == false).ToList();
         return wordsShown;
+    }
+
+    public List<Word> GetHiddenWords()
+    {
+        List<Word> hiddenWords = _words.Where(word => word.IsHidden() == true).ToList();
+        return hiddenWords;
+    }
+
+    public void GuessWithLetter(string letter)
+    {
+        foreach (Word word in GetHiddenWords())
+        {
+            word.ShowLetter(letter);
+        }
     }
 }
