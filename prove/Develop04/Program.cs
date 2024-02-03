@@ -1,3 +1,5 @@
+// My program has a validation for the elements inserted in the Listing Activity. Asks the user if the list they inserted is correct or not; and if so the program saves it; otherwise, the program prompts the user to enter a new list with the same message.
+
 using System;
 
 class Program
@@ -34,6 +36,12 @@ class Program
             {
                 ListingActivity listing = new("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain time.");
                 listing.Run();
+            }
+
+            if (response == 4)
+            {
+                Console.WriteLine("Goodbye!");
+                break;
             }
         } while (response != 4);
     }

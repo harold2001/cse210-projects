@@ -23,6 +23,8 @@ class ListingActivity : Activity
 
         GetRandomPrompt();
 
+        Console.WriteLine();
+
         List<string> list = GetListFromUser();
         _count = list.Count;
         Console.WriteLine($"You listed {_count} items!");
@@ -50,7 +52,6 @@ class ListingActivity : Activity
         List<string> responses = new();
 
         DateTime currentTime = DateTime.Now;
-        Console.WriteLine();
         while (endTime > currentTime)
         {
             Console.Write("> ");
@@ -58,6 +59,25 @@ class ListingActivity : Activity
             responses.Add(userInput);
             currentTime = DateTime.Now;
         }
-        return responses;
+
+        Console.WriteLine("This is what you have listed. Is it ok? (Y/N): ");
+        string answer = Console.ReadLine();
+
+        if (answer.ToLower() == "n" || answer.ToLower() == "no")
+        {
+            Console.WriteLine("Please enter the items again:");
+            List<string> list = GetListFromUser();
+            return list;
+        }
+        else if (answer.ToLower() == "y" || answer.ToLower() == "yes")
+        {
+            Console.WriteLine("List saved.");
+            return responses;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Assumming 'Y' and saving list...");
+            return responses;
+        }
     }
 }
