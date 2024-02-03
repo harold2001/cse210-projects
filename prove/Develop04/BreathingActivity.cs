@@ -4,42 +4,63 @@ class BreathingActivity : Activity
 {
     public BreathingActivity(string name, string description) : base(name, description)
     {
-
     }
 
     public void Run()
     {
-    }
+        DisplayStartingMessage();
 
-    public void Breathing()
-    {
-        Console.WriteLine("Breath in...");
-        Thread.Sleep(3000);
-        Console.WriteLine("Breath out...");
-        Thread.Sleep(3000);
-    }
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(_duration);
+        Breathing(2, 4);
+        DateTime currentTime = DateTime.Now;
 
-    public void BreathingActivityStart()
-    {
-        Console.WriteLine("Get ready...");
-        Thread.Sleep(3000);
-        Console.WriteLine("Start breathing...");
-        Thread.Sleep(3000);
-        for (int i = 0; i < _duration; i++)
+        while (futureTime > currentTime)
         {
-            Breathing();
-            Console.WriteLine($"You have completed {i + 1} seconds of the breathing activity.");
-            Thread.Sleep(1000);
+            Breathing(4, 6);
+
+            currentTime = DateTime.Now;
         }
-        Console.WriteLine("Breathing activity is complete.");
+
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("Well done!!");
+        ShowSpinner(3);
+        Console.WriteLine("");
+        Console.WriteLine($"You have completed another {_duration} seconds of Breathing Activity.");
     }
 
-    public void BreathingActivityEnd()
+    public static void Breathing(int inDuration, int outDuration)
     {
-        Console.WriteLine("Get ready...");
-        Thread.Sleep(3000);
-        Console.WriteLine("Start breathing...");
-        Thread.Sleep(3000);
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.Write($"Breath in...{inDuration}");
 
+        while (inDuration > 0)
+        {
+            --inDuration;
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            Console.Write(inDuration);
+
+        }
+        Console.Write("\b \b");
+
+        Console.WriteLine("");
+
+        Console.Write($"Now breath out...{outDuration}");
+
+        while (outDuration > 0)
+        {
+            --outDuration;
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            Console.Write(outDuration);
+
+        }
+
+        Console.Write("\b \b");
     }
 }
