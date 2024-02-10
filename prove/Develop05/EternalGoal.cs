@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 
 class EternalGoal : Goal
 {
@@ -7,18 +8,21 @@ class EternalGoal : Goal
 
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-
+        Console.WriteLine($"Congratulations! You have earned {_points} points!");
+        return _points;
     }
 
     public override bool IsComplete()
     {
-        return false;
+        return true;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        string type = GetType().Name;
+
+        return $"{type}:{_shortName},{_description},{_points}";
     }
 }

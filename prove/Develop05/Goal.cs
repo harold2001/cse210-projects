@@ -2,9 +2,9 @@ using System;
 
 abstract class Goal
 {
-    private readonly string _shortName;
-    private readonly string _description;
-    private readonly int _points;
+    protected readonly string _shortName;
+    protected readonly string _description;
+    protected readonly int _points;
 
     public Goal(string name, string description, int points)
     {
@@ -13,14 +13,19 @@ abstract class Goal
         _points = points;
     }
 
-    public abstract void RecordEvent();
+    public abstract int RecordEvent();
 
     public abstract bool IsComplete();
 
     public virtual string GetDetailString()
     {
-        return "";
+        return $"[ ] {_shortName} ({_description})";
     }
 
     public abstract string GetStringRepresentation();
+
+    public string GetName()
+    {
+        return _shortName;
+    }
 }
