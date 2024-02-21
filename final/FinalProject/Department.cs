@@ -2,16 +2,38 @@ using System;
 
 class Department
 {
-    private string _name;
-    private List<Course> _courses = new();
+    private readonly string _name;
+    private readonly List<Course> _courses = new();
 
-    public void AddCourse(Course course)
+    public Department(string name)
     {
-        _courses.Add(course);
+        _name = name;
     }
 
-    public void ShowCourses()
+    public string GetName()
     {
+        return _name;
+    }
 
+    public void AddCourse()
+    {
+        Console.WriteLine();
+        Console.Write("What is the name of the course? ");
+        string name = Console.ReadLine();
+
+        Course course = new(name);
+        _courses.Add(course);
+        Console.WriteLine("Course added!");
+    }
+
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Department: {_name}");
+        Console.WriteLine("Courses:");
+        foreach (Course course in _courses)
+        {
+            course.DisplayInfo();
+        }
+        Console.WriteLine();
     }
 }

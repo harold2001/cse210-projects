@@ -11,5 +11,5 @@ abstract class Person
         _age = age;
     }
 
-    public abstract void DisplayInfo();
+    public abstract string DisplayInfo();
 }

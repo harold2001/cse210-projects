@@ -9,8 +9,8 @@ class Teacher : Person
         _subject = subject;
     }
 
-    public override void DisplayInfo()
+    public override string DisplayInfo()
     {
-        Console.WriteLine($"Name: {_name}, Age: {_age}, Subject: {_subject}");
+        return $"Name: {_name}, Age: {_age}, Subject: {_subject}";
     }
 }

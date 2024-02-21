@@ -9,8 +9,8 @@ class Student : Person
         _gradeLevel = gradeLevel;
     }
 
-    public override void DisplayInfo()
+    public override string DisplayInfo()
     {
-        Console.WriteLine($"Name: {_name}, Age: {_age}, Grade Level: {_gradeLevel}");
+        return $"Name: {_name}, Age: {_age}, Grade Level: {_gradeLevel}";
     }
 }
